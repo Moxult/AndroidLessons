@@ -52,9 +52,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+       /* if (savedInstanceState != null) {
+            notes = savedInstanceState.getParcelable(NOTE_KEY);
+            Log.d("234", notes.get(0).getTitle().toString());
+        }*/
         ListView lw = (ListView) findViewById(R.id.my_list);
         animation = AnimationUtils.loadAnimation(this, R.anim.btn);
-
 
         ib = (ImageButton) findViewById(R.id.add_btn);
         ib.setColorFilter(Color.rgb(191, 107, 48));
@@ -131,9 +134,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        /*notes = (ArrayList<Note>) savedInstanceState.getParcelable(NOTE_KEY);
+        for(int i = 0; i < notes.size(); i++) {
+
+            Log*.d("234", notes.get(i).getTitle());
+        }*/
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-            //outState.putParcelableArrayList(NOTE_KEY, notes);
+          //  outState.putParcelable(NOTE_KEY, (Parcelable) notes);
 
     }
 }

@@ -16,7 +16,8 @@
         android:layout_height="wrap_content">
     </ListView>
 
-    <ImageButton
+
+     <ImageButton
         android:id="@+id/add_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,8 +26,10 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:background="@android:color/transparent"
-        android:onClick="addNote"
-        android:src="@drawable/ic_plus_circle_black_36dp" />
+         android:adjustViewBounds="true"
+         android:background="@null"
+         android:src="@drawable/ic_plus_circle_black_36dp"
+         android:onClick="addNote"
+         />
 
 </RelativeLayout>
