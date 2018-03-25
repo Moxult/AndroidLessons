@@ -6,6 +6,6 @@
         android:shape="line" >
         <stroke
             android:width="1px"
-            android:color="@android:color />
+            android:color="@android:color/darker_gray" />
     </shape>
 </inset>
