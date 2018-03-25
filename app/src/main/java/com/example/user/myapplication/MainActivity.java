@@ -1,66 +1,52 @@
 package com.example.user.myapplication;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.os.Parcelable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextClock;
-import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import com.melnykov.fab.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
-
-    private List<Note> notes = new ArrayList();
 
     static final String REDACTION_KEY = "REDACTION";
     static final String NOTE_KEY = "NOTE";
     static final String TITLE_KEY = "TITLE";
     static final String DESCRIPTION_KEY = "DESCRIPTION";
-
     private static final int REQUEST_ACCESS_TYPE = 1;
+
+
+    private ArrayList<Note> notes = new ArrayList();
     Animation animation;
     private int selectionElement;
     NoteAdapter adapter;
     ImageButton ib;
-    @SuppressLint("ClickableViewAccessibility")
+    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       /* if (savedInstanceState != null) {
-            notes = savedInstanceState.getParcelable(NOTE_KEY);
-            Log.d("234", notes.get(0).getTitle().toString());
-        }*/
+        if(savedInstanceState != null)
+            notes = (ArrayList<Note>) savedInstanceState.getSerializable(NOTE_KEY);
+
         ListView lw = (ListView) findViewById(R.id.my_list);
         animation = AnimationUtils.loadAnimation(this, R.anim.btn);
 
-        ib = (ImageButton) findViewById(R.id.add_btn);
-        ib.setColorFilter(Color.rgb(191, 107, 48));
+       // ib = (ImageButton) findViewById(R.id.add_btn);
+        //ib.setColorFilter(Color.rgb(191, 107, 48));
 
         adapter = new NoteAdapter(this, R.layout.list_item, notes);
 
@@ -76,9 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
        });
 
-
-
-
+        listView = (ListView) findViewById(R.id.my_list);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.attachToListView(listView);
     }
 
     public void startEditActivity(Note selection)  {
@@ -87,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(NOTE_KEY, selection );
         intent.putExtra(REDACTION_KEY, "1");
         startActivityForResult(intent, REQUEST_ACCESS_TYPE);
-
     }
 
     @Override
@@ -98,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     Date date = new Date();
-                    adapter.add(new Note(data.getStringExtra(TITLE_KEY), data.getStringExtra(DESCRIPTION_KEY), date, getRandomColor()));
+                    adapter.add(new Note(data.getStringExtra(TITLE_KEY), data.getStringExtra(DESCRIPTION_KEY), date, data.getIntExtra(EditActivity.COLOR_KEY, 0)));
                     adapter.notifyDataSetChanged();
 
                 }
@@ -107,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Date currentDate = notes.get(selectionElement).getDate();
                     int currentColor = notes.get(selectionElement).getColor();
-                    notes.set(selectionElement, new Note(data.getStringExtra(TITLE_KEY), data.getStringExtra(DESCRIPTION_KEY), currentDate, currentColor));
+                    notes.set(selectionElement, new Note(data.getStringExtra(TITLE_KEY), data.getStringExtra(DESCRIPTION_KEY), currentDate, data.getIntExtra(EditActivity.COLOR_KEY, 0)));
                     adapter.notifyDataSetChanged();
 
                 }
@@ -117,36 +102,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void addNote (View v) {
-        ib.startAnimation(animation);
+        //ib.startAnimation(animation);
         Intent intent = new Intent(this, EditActivity.class);
         intent.putExtra(REDACTION_KEY, "0");
         startActivityForResult(intent, REQUEST_ACCESS_TYPE);
     }
 
-    private int getRandomColor() {
-
-        Random rand = new Random();
-        int r = rand.nextInt(255 );
-        int g = rand.nextInt(255 );
-        int b = rand.nextInt(255);
-
-        return Color.argb(150, r, g, b);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        /*notes = (ArrayList<Note>) savedInstanceState.getParcelable(NOTE_KEY);
-        for(int i = 0; i < notes.size(); i++) {
-
-            Log*.d("234", notes.get(i).getTitle());
-        }*/
-    }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-          //  outState.putParcelable(NOTE_KEY, (Parcelable) notes);
-
+          outState.putSerializable(NOTE_KEY, notes);
     }
 }

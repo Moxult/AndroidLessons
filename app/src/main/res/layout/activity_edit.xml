@@ -50,7 +50,21 @@
         android:textSize="13sp"
         android:hint="Введите заголовок"
         />
-
+    <Button
+        android:id="@+id/edit_color_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:text="Редактировать цвет"
+        android:onClick="editColor"/>
+    <ImageView
+        android:id="@+id/icon_repeater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/circle_avatar"
+        android:layout_gravity="center"
+        />
     <Button
         android:id="@+id/save_btn"
         android:layout_width="wrap_content"
@@ -59,5 +73,6 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:text="Сохранить"
         android:onClick="saveNote"/>
+
 
 </LinearLayout>

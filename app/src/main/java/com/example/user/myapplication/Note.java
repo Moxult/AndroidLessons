@@ -16,7 +16,7 @@ import java.util.Locale;
  * Created by User on 13.03.2018.
  */
 
-public class Note implements Parcelable{
+public class Note implements Serializable{
 
     private String title;
     private String description;
@@ -31,16 +31,6 @@ public class Note implements Parcelable{
         this.color = color;
 
     }
-
-    public Note(Parcel in)  {
-
-        String[] data = new String[2];
-        in.readStringArray(data);
-        title = data[0];
-        description = data[1];
-
-    }
-
 
     public String getTitle() {
 
@@ -80,28 +70,4 @@ public class Note implements Parcelable{
 
         this.color = color;
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringArray(new String[] { title, description });
-    }
-
-    public static final Parcelable.Creator<Note> CREATOR = new Parcelable.Creator<Note>() {
-
-        @Override
-        public Note createFromParcel(Parcel source) {
-
-            return new Note(source);
-        }
-
-        @Override
-        public Note[] newArray(int size) {
-            return new Note[size];
-        }
-    };
 }

@@ -3,11 +3,14 @@ package com.example.user.myapplication;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.Image;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextClock;
@@ -43,12 +46,11 @@ public class NoteAdapter extends ArrayAdapter<Note> {
         TextView titleView = (TextView) view.findViewById(R.id.title);
         TextView descriptionView = (TextView) view.findViewById(R.id.description);
         TextView dateView = (TextView) view.findViewById(R.id.date);
-
+        ImageView iconView = (ImageView) view.findViewById(R.id.icon);
         Note note = notes.get(position);
-        RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.list_item);
-        relativeLayout.setBackgroundColor(note.getColor());
+        iconView.setColorFilter(note.getColor());
 
-        SimpleDateFormat formatForDateNow = new SimpleDateFormat(" dd-MM-yy hh:mm");
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat(" dd-MM-yy");
 
         titleView.setText(note.getTitle());
         descriptionView.setText(note.getDescription());

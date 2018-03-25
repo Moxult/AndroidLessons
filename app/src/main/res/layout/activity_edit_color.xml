@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit_color_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.user.myapplication.ColorPicker">
+
+    <TextView
+        android:id="@+id/lable_current_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Текущий цвет"
+        android:textSize="16sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/current_color"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/lable_current_color"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/rgb_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/current_color"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/hsv_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_below="@+id/rgb_value"
+        android:layout_centerHorizontal="true"/>
+
+
+    <com.example.user.myapplication.MyScrollView
+        android:id="@+id/scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/hsv_value">
+
+
+        <LinearLayout
+            android:id="@+id/scroll_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
+
+            <Button
+                android:id="@+id/color1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color6"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color7"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color8"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color9"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color10"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color12"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color13"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color14"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color15"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+
+            <Button
+                android:id="@+id/color16"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp" />
+        </LinearLayout>
+    </com.example.user.myapplication.MyScrollView>
+    <LinearLayout
+        android:id="@+id/best_colors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/scroll"
+        android:layout_centerInParent="true">
+
+    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выбрать цвет"
+        android:layout_below="@+id/best_colors"
+        android:layout_centerHorizontal="true"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:onClick="changeColor"/>
+</RelativeLayout>
